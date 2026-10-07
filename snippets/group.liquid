@@ -118,8 +118,8 @@
       & > .group-block > .group-block-content {
         max-width: 270px;
 
-        @media screen and (width: 768px) {
-          max-width: 200px;
+        @media screen and (max-width: 768px) {
+          max-width: 176px;
         }
 
         @media screen and (max-width: 767px) {
@@ -141,7 +141,7 @@
           }
         }
 
-        @media screen and (max-width: 1017px) {
+        @media screen and (max-width: 1111px) {
           & .icon-block {
             padding: 8px;
 
@@ -167,9 +167,13 @@
       line-height: 38px;
     }
 
-    .vertical-on-tablet {
-      @media screen and (min-width: 768px) {
+    @media screen and (min-width: 768px) {
+      .vertical-on-tablet > .group-block-content {
         --flex-direction: column !important;
+      }
+
+      .vertical-on-tablet .image-block {
+        width: 70%;
       }
     }
   }

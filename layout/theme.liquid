@@ -50,6 +50,15 @@
     {{ content_for_header }}
 
     {% style %}
+      *:not(.button, .tag, .button *, .tag *) {
+        font-family: 'Satoshi', sans-serif !important;
+      }
+
+      *:not(.button, .tag, .button *, .tag *) em,
+      *:not(.button, .tag, .button *, .tag *) i {
+        font-style: italic;
+      }
+
       .button {
         padding: 15px 44px;
         font-size: 14px;
