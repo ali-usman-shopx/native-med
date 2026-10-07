@@ -62,6 +62,13 @@
       "visible_if": "{{ block.settings.content_direction == 'row' }}"
     },
     {
+      "type": "checkbox",
+      "id": "vertical_on_tablet",
+      "label": "Vertical on Tablet",
+      "default": false,
+      "visible_if": "{{ section.settings.content_direction == 'row' }}"
+    },
+    {
       "type": "select",
       "id": "horizontal_alignment",
       "label": "t:settings.alignment",

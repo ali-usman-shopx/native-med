@@ -76,10 +76,25 @@
       .h1 > p {
         font-size: 44px !important;
         line-height: 57px;
-        font-weight: 400;
+        font-weight: 400 !important;
 
         & > em {
           color: #7E4D8B;
+        }
+
+        @media screen and (max-width: 767px) {
+          font-size: 30px !important;
+          line-height: 38px;
+        }
+      }
+
+      .h2 > p {
+        font-size: 44px !important;
+        line-height: 57px;
+        font-weight: 400 !important;
+
+        & > em {
+          font-weight: 600 !important;
         }
 
         @media screen and (max-width: 767px) {

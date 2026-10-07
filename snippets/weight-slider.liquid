@@ -1,0 +1,313 @@
+{%- doc -%}
+  Weight Slider
+
+  Parameters:
+  @param {number} value
+  @param {number} min
+  @param {number} max
+  @param {number} step
+
+  @param {string} track_color
+  @param {number} track_height
+  @param {string} knob_color
+  @param {number} knob_size
+
+  @param {string} container_background
+  @param {number} container_padding
+  @param {number} container_border_radius
+
+  @param {string} [label_input]
+  @param {string} [bottom_label_input]
+{%- enddoc -%}
+
+{% liquid
+  assign slider_value = value | default: min
+  assign slider_min = min | default: 0
+  assign slider_max = max | default: 600
+  assign slider_step = step | default: 1
+
+  assign track_color_value = track_color | default: '#000000'
+  assign track_height_value = track_height | default: 9
+  assign knob_color_value = knob_color | default: '#000000'
+  assign knob_size_value = knob_size | default: 31
+
+  assign container_background_value = container_background | default: 'transparent'
+  assign container_padding_value = container_padding | default: 25
+  assign container_border_radius_value = container_border_radius | default: 16
+
+  assign label = label_input | default: 'Select your current weight'
+  assign bottom_label = bottom_label_input | default: 'Weight you could loose (lb.) :'
+%}
+
+<div
+  class="weight-slider"
+  style="
+    --weight-slider-track-color: {{ track_color_value }};
+    --weight-slider-track-height: {{ track_height_value }}px;
+    --weight-slider-knob-color: {{ knob_color_value }};
+    --weight-slider-knob-size: {{ knob_size_value }}px;
+
+    --weight-slider-container-background: {{ container_background_value }};
+    --weight-slider-container-padding: {{ container_padding_value }}px;
+    --weight-slider-container-radius: {{ container_border_radius_value }}px;
+  "
+>
+  <div class="weight-slider__controls">
+
+    <div class="top-row">
+      <div class="label">
+        <span>{{ label }}</span>
+      </div>
+
+      <div class="weight-slider__input-wrapper">
+        <input
+          type="number"
+          class="weight-slider__input"
+          value="{{ slider_value }}"
+          min="{{ slider_min }}"
+          max="{{ slider_max }}"
+          step="{{ slider_step }}"
+          data-weight-input
+        >
+
+        <span class="weight-slider__unit">lb.</span>
+      </div>
+    </div>
+
+    
+
+    <input
+      type="range"
+      class="weight-slider__range"
+      value="{{ slider_value }}"
+      min="{{ slider_min }}"
+      max="{{ slider_max }}"
+      step="{{ slider_step }}"
+      data-weight-slider
+    >
+
+    <div class="bottom-row">
+      <span class="bottom_label">{{ bottom_label }}&nbsp;</span>
+      <span class="weight_loss_value"></span>
+    </div>
+
+  </div>
+</div>
+
+{% stylesheet %}
+  .section-content-wrapper:has(.weight-slider) > .group-block > .group-block-content {
+    @media screen and (max-width: 1123px) and (min-width: 640px) {
+      --flex-direction: column !important;
+
+      & > .group-block:first-of-type {
+        width: 100%;
+
+        & > .group-block-content {
+          width: 100%;
+
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  .shopify-block:has(.weight-slider) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .weight-slider {
+    max-width: 567px;
+    width: 100%;
+    padding: var(--weight-slider-container-padding);
+    background: var(--weight-slider-container-background);
+    border-radius: var(--weight-slider-container-radius);
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .weight-slider__controls {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .weight-slider__controls > .top-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .weight-slider__controls > .top-row * {
+    color: #2D2D2D !important;
+  }
+
+  .weight-slider__controls > .bottom-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #EBE5ED;
+    width: 100%;
+    border-radius: 40px;
+    padding-block: 5px;
+  }
+
+  .bottom_label {
+    color: #2D2D2D;
+    font-size: 20px;
+  }
+
+  .weight_loss_value {
+    color: #7E4C8B;
+    font-size: 34px;
+  }
+
+  .weight-slider__controls > .top-row > .label {
+    max-width: 140px;
+    font-size: 20px;
+  }
+
+  .weight-slider__input {
+    width: fit-content;
+    background-color: transparent !important;
+    border: none;
+    box-shadow: none;
+
+    font-size: 34px;
+    color: #2D2D2D;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .weight-slider__input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .weight-slider__unit {
+    font-size: 34px;
+    color: #2D2D2D;
+  }
+
+  @media screen and (max-width: 767px) {
+    .bottom_label {
+      color: #2D2D2D;
+      font-size: 14px;
+    }
+
+    .weight_loss_value {
+      font-size: 16px;
+    }
+
+    .weight-slider__controls > .top-row > .label {
+      font-size: 12px;
+    }
+
+    .weight-slider__input {
+      font-size: 16px;
+    }
+
+    .weight-slider__unit {
+      font-size: 16px;
+    }
+  }
+
+  .weight-slider__range {
+    margin: 0;
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* Chrome / Safari / Edge */
+
+  .weight-slider__range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: var(--weight-slider-track-height);
+    background: var(--weight-slider-track-color);
+    border-radius: 999px;
+  }
+
+  .weight-slider__range::-webkit-slider-thumb {
+    width: var(--weight-slider-knob-size);
+    height: var(--weight-slider-knob-size);
+    margin-top: calc(
+      (var(--weight-slider-track-height) - var(--weight-slider-knob-size)) / 2
+    );
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    background: var(--weight-slider-knob-color);
+    border: none;
+    border-radius: 50%;
+  }
+
+  /* Firefox */
+
+  .weight-slider__range::-moz-range-track {
+    width: 100%;
+    height: var(--weight-slider-track-height);
+    background: var(--weight-slider-track-color);
+    border-radius: 999px;
+  }
+
+  .weight-slider__range::-moz-range-thumb {
+    width: var(--weight-slider-knob-size);
+    height: var(--weight-slider-knob-size);
+
+    background: var(--weight-slider-knob-color);
+    border: none;
+    border-radius: 50%;
+  }
+{% endstylesheet %}
+
+<script>
+  (() => {
+    const sliders = document.querySelectorAll('.weight-slider');
+
+    sliders.forEach((container) => {
+      const range = container.querySelector('[data-weight-slider]');
+      const input = container.querySelector('[data-weight-input]');
+      const weightLossValue = container.querySelector('.weight_loss_value');
+
+      if (!range || !input || !weightLossValue) return;
+
+      const updateWeight = (value) => {
+        const weight = Number(value);
+
+        if (Number.isNaN(weight)) return;
+
+        const min = Number(range.min);
+        const max = Number(range.max);
+
+        const clampedValue = Math.max(min, Math.min(max, weight));
+
+        input.value = clampedValue;
+        range.value = clampedValue;
+
+        weightLossValue.textContent = `${clampedValue * 0.1}lb.`;
+      };
+
+      range.addEventListener('input', () => {
+        updateWeight(range.value);
+      });
+
+      input.addEventListener('input', () => {
+        updateWeight(input.value);
+      });
+
+      // Populate the initial value.
+      updateWeight(input.value);
+    });
+  })();
+</script>

@@ -32,6 +32,7 @@
     {{ class }}
     {% if background_color != blank %} color-custom-{{ block_id }}{% endif %}
     {% if settings.apply_grid_overrides %} grid_overrides{% endif %}
+    {% if settings.vertical_on_tablet %} vertical-on-tablet{% endif %}
   "
   style="
     {% render 'border-override', settings: settings %}
@@ -164,6 +165,12 @@
     .group-block-content:has(.grid_overrides) > .h1 > p {
       font-size: 30px !important;
       line-height: 38px;
+    }
+
+    .vertical-on-tablet {
+      @media screen and (min-width: 768px) {
+        --flex-direction: column !important;
+      }
     }
   }
 {% endstylesheet %}
