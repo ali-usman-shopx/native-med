@@ -1,0 +1,119 @@
+{% liquid
+  assign block_settings = block.settings
+%}
+
+{% render 'weight-slider',
+    value: block_settings.default_value,
+    min: block_settings.min_value,
+    max: block_settings.max_value,
+    step: block_settings.step_value,
+
+    track_color: block_settings.track_color,
+    track_height: block_settings.track_height,
+
+    knob_color: block_settings.knob_color,
+    knob_size: block_settings.knob_size,
+
+    container_background: block_settings.container_background,
+    container_padding: block_settings.container_padding,
+    container_border_radius: block_settings.container_border_radius
+%}
+
+{% schema %}
+{
+  "name": "Weight Slider",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "number",
+      "id": "default_value",
+      "label": "Default value",
+      "default": 800
+    },
+    {
+      "type": "number",
+      "id": "min_value",
+      "label": "Minimum value",
+      "default": 100
+    },
+    {
+      "type": "number",
+      "id": "max_value",
+      "label": "Maximum value",
+      "default": 2000
+    },
+    {
+      "type": "number",
+      "id": "step_value",
+      "label": "Step",
+      "default": 100
+    },
+
+    {
+      "type": "header",
+      "content": "Track"
+    },
+    {
+      "type": "color",
+      "id": "track_color",
+      "label": "Track color",
+      "default": "#D9D9D9"
+    },
+    {
+      "type": "number",
+      "id": "track_height",
+      "label": "Track height",
+      "default": 9,
+      "info": "Track height in pixels."
+    },
+
+    {
+      "type": "header",
+      "content": "Knob"
+    },
+    {
+      "type": "color",
+      "id": "knob_color",
+      "label": "Knob color",
+      "default": "#212121"
+    },
+    {
+      "type": "number",
+      "id": "knob_size",
+      "label": "Knob size (Pixels)",
+      "default": 31
+    },
+
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "color",
+      "id": "container_background",
+      "label": "Background",
+      "default": "#F6F0E9"
+    },
+    {
+      "type": "number",
+      "id": "container_padding",
+      "label": "Padding",
+      "default": 25
+    },
+    {
+      "type": "number",
+      "id": "container_border_radius",
+      "label": "Border radius",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Weight slider"
+    }
+  ]
+}
+{% endschema %}

@@ -48,6 +48,77 @@
     {% endif %}
 
     {{ content_for_header }}
+
+    {% style %}
+      p {
+        color: #2D2D2D;
+      }
+
+      *:not(.button, .tag, .button *, .tag *) {
+        font-family: 'Satoshi', sans-serif !important;
+      }
+
+      *:not(.button, .tag, .button *, .tag *) em,
+      *:not(.button, .tag, .button *, .tag *) i {
+        font-style: italic;
+      }
+
+      .button {
+        padding: 15px 44px;
+        font-size: 14px;
+        font-weight: 500;
+
+        min-width: 249px;
+
+        @media screen and (max-width: 768px) {
+          min-width: 170px;
+          padding: 10px 44px;
+          font-size: 9.5px;
+        }
+      }
+
+      .tag > p {
+        font-size: 14px !important;
+        font-weight: 500;
+        color: #2D2D2D;
+
+        @media screen and (max-width: 767px) {
+          font-size: 9.5px !important;
+        }
+      }
+
+      .h1 > p {
+        font-size: 44px !important;
+        line-height: 57px;
+        font-weight: 400 !important;
+        color: #2D2D2D;
+
+        & > em {
+          color: #7E4D8B;
+        }
+
+        @media screen and (max-width: 767px) {
+          font-size: 30px !important;
+          line-height: 38px;
+        }
+      }
+
+      .h2 > p {
+        font-size: 44px !important;
+        line-height: 57px;
+        font-weight: 400 !important;
+        color: #2D2D2D;
+
+        & > em {
+          font-weight: 600 !important;
+        }
+
+        @media screen and (max-width: 767px) {
+          font-size: 30px !important;
+          line-height: 38px;
+        }
+      }
+    {% endstyle %}
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">

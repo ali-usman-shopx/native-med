@@ -29,6 +29,12 @@
   ],
   "settings": [
     {
+      "type": "checkbox",
+      "id": "apply_grid_overrides",
+      "label": "Apply Grid Overrides",
+      "default": false
+    },
+    {
       "type": "header",
       "content": "t:content.layout"
     },
@@ -54,6 +60,13 @@
       "label": "t:settings.vertical_on_mobile",
       "default": true,
       "visible_if": "{{ block.settings.content_direction == 'row' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "vertical_on_tablet",
+      "label": "Vertical on Tablet",
+      "default": false,
+      "info": "Designed to be used on steps section, apply with caution."
     },
     {
       "type": "select",

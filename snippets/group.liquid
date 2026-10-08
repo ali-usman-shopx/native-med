@@ -31,6 +31,8 @@
     size-style
     {{ class }}
     {% if background_color != blank %} color-custom-{{ block_id }}{% endif %}
+    {% if settings.apply_grid_overrides %} grid_overrides{% endif %}
+    {% if settings.vertical_on_tablet %} vertical-on-tablet{% endif %}
   "
   style="
     {% render 'border-override', settings: settings %}
@@ -96,5 +98,83 @@
   /* Needs the .group-block__link ~ to be specific enough to take effect. */
   .group-block__link ~ .group-block-content--design-mode {
     pointer-events: auto;
+  }
+
+  /* Grid Override */
+  .grid_overrides {
+    /* Row */
+    & > .group-block-content > .group-block > .group-block-content {
+      @media screen and (max-width: 767px) {
+        gap: 0px;
+      }
+
+      /* Column */
+      & > .group-block:last-child > .group-block-content {
+        @media screen and (max-width: 767px) {
+          margin-left: 10px;
+        }
+      }
+      
+      & > .group-block > .group-block-content {
+        max-width: 270px;
+
+        @media screen and (max-width: 768px) {
+          max-width: 176px;
+        }
+
+        @media screen and (max-width: 767px) {
+          gap: 9px;
+        }
+
+        & .icon-block {
+          padding: 12px;
+
+          background-color: white;
+          border-radius: 50px;
+        }
+        
+        & .text-block > p {
+          font-size: 21px;
+
+          @media screen and (max-width: 767px) {
+            font-size: 13.75px;
+          }
+        }
+
+        @media screen and (max-width: 1111px) {
+          & .icon-block {
+            padding: 8px;
+
+            & > img {
+              width: 20px !important;
+              height: 20px !important;
+            }
+          }
+
+          @media screen and (min-width: 400px) {
+            & .text-block > p {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1017px) {
+    .group-block-content:has(.grid_overrides) > .h1 > p {
+      font-size: 30px !important;
+      line-height: 38px;
+    }
+
+    @media screen and (min-width: 768px) {
+      .vertical-on-tablet > .group-block-content {
+        --flex-direction: column !important;
+      }
+
+      .vertical-on-tablet .image-block {
+        width: 70%;
+      }
+    }
   }
 {% endstylesheet %}
